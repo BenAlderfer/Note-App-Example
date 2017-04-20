@@ -53,7 +53,7 @@ See below for a self-guided tutorial:
 </RelativeLayout>
 ~~~~
 
-![Empty app](screenshots/empty_layout.png)
+<img src="screenshots/empty_layout.png" alt="Empty app" width="300"/>
 
 8) Next we will add a plus vector asset for the floating action button (FAB). To do this, right click on the “res” folder and choose `New>Vector Asset`. Under “Icon”, click the Android icon and in the next window, scroll up and select the “+” icon. Once that is done, check “Enable auto mirroring for RTL layout” and click “Next” and then “Finish”.
 9) Back in the `activity_main.xml`, you will add the ListView to store the items and the floating action button (FAB) to add items to the ListView. Add a ListView below the Toolbar and a FAB in the bottom right corner, offset by the default horizontal and vertical margins. The onClick action for the FAB should be “addItem”, the method that it will execute when clicked. Your code should look like this:
@@ -82,7 +82,7 @@ See below for a self-guided tutorial:
         android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 ~~~~
 
-![Base app layout](screenshots/base_layout.png)
+<img src="screenshots/base_layout.png" alt="Base app layout" width="300"/>
 
 10) Next step is to create a list row layout. It will be a simple LinearLayout with a single TextView. Your code should look like this:
 ~~~~
@@ -165,5 +165,5 @@ public void addItem(View v) {
 
 Congratulations, you now have a working note taking app. This app can take whatever you type in the dialog and save it to the list. Your app should now look something like this:
 
-![Final look](screenshots/final_app.png)
+<img src="screenshots/final_app.png" alt="Final look" width="300"/>
 
