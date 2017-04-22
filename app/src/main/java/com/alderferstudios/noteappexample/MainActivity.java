@@ -19,12 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
     //the list of items
     private List<String> listItems;
-    private ListView list;
     private ArrayAdapter<String> adapter;
 
     /**
      * Executes on app start
-     * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
         listItems = new ArrayList<>();
-        list = (ListView) findViewById(R.id.list);
+        ListView list = (ListView) findViewById(R.id.list);
 
-        // initiate the listadapter
+        // adapter to tie listItems to list
         adapter = new ArrayAdapter<>(this,
                 R.layout.list_row, R.id.listText, listItems);
 
