@@ -1,4 +1,4 @@
-# Note-App-Example
+# Note App Example
 A tutorial app on building a simple list of notes app.
 
 See below for a self-guided tutorial:
@@ -6,7 +6,18 @@ See below for a self-guided tutorial:
 1) Before starting, you will need to download [Android Studio](https://developer.android.com/studio/index.html) and the Android SDK (during the Android Studio installation).
 2) Create a new app. Name it whatever you want and set your domain to your website or make something up. Press “Next”. Set the minimum SDK level to 11 and press “Next”. Select “Empty Activity” and press “Next” and then press “Finish”.
 3) You are now ready to start making the app.
-4) First, we are going to define colors. Go to `app>src>main>res>values>colors.xml`. If the file does not exist, create it. 
+4) First, we will need to make sure the dependencies are there for what we want to do. The main ones we will be concerned with are appcompat and design. These are included in the app's build.gradle. If you are on the latest tools, these should be the compile statements:
+
+~~~
+dependencies {
+    ...
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    ...
+}
+~~~
+
+4.5) Next, we are going to define colors. Go to `app>src>main>res>values>colors.xml`. If the file does not exist, create it. 
 5) In that file, set the colorPrimary, colorPrimaryDark, and colorAccent. The file should look like this:
 ~~~~
 <?xml version="1.0" encoding="utf-8"?>
@@ -38,7 +49,32 @@ See below for a self-guided tutorial:
 </resources>
 ~~~~
 
-7) Now we are going to work on the layout of the app. Go to `app>src>main>res>layout>activity_main.xml`. First thing to do is remove the default padding from the relative layout and include the toolbar. The file should now look like: 
+7) Now we are going to work on the layout of the app. First, right click on the layout folder and add the toolbar layout with "New>Layout resource file". Name it toolbar and click "Ok". In it, define a Toolbar inside an AppBarLayout inside a FrameLayout. The finished code should look like this: 
+
+~~~
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/Toolbar" />
+
+    </android.support.design.widget.AppBarLayout>
+
+</FrameLayout>
+~~~
+
+7.5) Go to `app>src>main>res>layout>activity_main.xml`. First thing to do is remove the default padding from the relative layout and include the toolbar. The file should now look like: 
 ~~~~
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
