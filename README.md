@@ -143,7 +143,6 @@ dependencies {
 13) Now it is time to add functionality to the app. Go to `app>src>main>java>yourappdomain>MainActivity.java`. First create a List of list items, ListView, and ArrayAdapter at the class level. 
 ~~~~
 private List<String> listItems;
-private ListView list;
 private ArrayAdapter<String> adapter;
 ~~~~
 
@@ -152,7 +151,7 @@ private ArrayAdapter<String> adapter;
 setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
 listItems = new ArrayList<>();
-list = (ListView) findViewById(R.id.list);
+ListView list = (ListView) findViewById(R.id.list);
 
 // initiate the listadapter
 adapter = new ArrayAdapter<>(this,
@@ -206,3 +205,67 @@ Congratulations, you now have a working note taking app. This app can take whate
 
 <img src="screenshots/final_app.png" alt="Final look" width="300"/>
 
+If you want to save your notes and restore them next time you use the app, continue the tutorial:
+18) To save the list, we will use SharedPreferences to save it to the app's cache. First, add the Gson dependency that we will need later: 
+
+~~~
+compile 'com.google.code.gson:gson:2.8.0'
+~~~
+
+19) Next, add some class level variables to work with SharedPreferences:
+
+~~~
+private SharedPreferences prefs;
+private SharedPreferences.Editor editor;
+~~~
+
+20)  Now we will save the list. SharedPreferences does not allow saving ArrayLists, so there will be some conversion involved using that Gson dependency. Overide onStop and add the code for turning the list into a json string and then use the editor to save it. Your code should look like this:
+
+~~~
+@Override
+public void onStop() {
+    super.onStop();
+
+    //turn list into json
+    String items = new Gson().toJson(listItems);
+
+    //save list to cache
+    editor.putString("list", items);
+    editor.apply(); //use apply, its faster than commit
+}
+~~~
+
+21) Now that the list is saved, we need to restore it on boot. Within onCreate, add the logic for reading in from SharedPreferences, converting back to an ArrayList, and setting listItems. Your finished onCreate should look like this:
+
+~~~
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+
+    prefs = getPreferences(Context.MODE_PRIVATE);
+    editor = prefs.edit();
+
+    //read in saved list
+    String savedList = prefs.getString("list", "");
+    if (savedList.equals("")) { //nothing saved
+        listItems = new ArrayList<>();
+    } else {    //restore saved
+        Type type = new TypeToken<ArrayList<String>>(){}.getType();
+        listItems = new Gson().fromJson(savedList, type);
+    }
+
+    ListView list = (ListView) findViewById(R.id.list);
+
+    // adapter to tie listItems to list
+    adapter = new ArrayAdapter<>(this,
+            R.layout.list_row, R.id.listText, listItems);
+
+    // assign the list adapter
+    list.setAdapter(adapter);
+}
+~~~
+
+At this point, your app should be able to take notes and save and restore them. This is now an app you may actually use.
