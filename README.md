@@ -17,9 +17,9 @@ dependencies {
 }
 ~~~
 
-4.5) Next, we are going to define colors. Go to `app>src>main>res>values>colors.xml`. If the file does not exist, create it. 
+5) Next, we are going to define colors. Go to `app>src>main>res>values>colors.xml`. If the file does not exist, create it. 
 
-5) In that file, set the colorPrimary, colorPrimaryDark, and colorAccent. The file should look like this:
+6) In that file, set the colorPrimary, colorPrimaryDark, and colorAccent. The file should look like this:
 ~~~~
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -30,7 +30,7 @@ dependencies {
 </resources>
 ~~~~
 
-6) Now we will set up the theme. Go to `app>src>main>res>values>styles.xml`. If the file does not exist, create it. In the file, you will need to customize the styles to match your design and add the “Toolbar” style. You can either make your own or use this:
+7) Now we will set up the theme. Go to `app>src>main>res>values>styles.xml`. If the file does not exist, create it. In the file, you will need to customize the styles to match your design and add the “Toolbar” style. You can either make your own or use this:
 ~~~~
 <resources>
     <!-- Base application theme. -->
@@ -50,7 +50,7 @@ dependencies {
 </resources>
 ~~~~
 
-7) Now we are going to work on the layout of the app. First, right click on the layout folder and add the toolbar layout with "New>Layout resource file". Name it toolbar and click "Ok". In it, define a Toolbar inside an AppBarLayout inside a FrameLayout. The finished code should look like this: 
+8) Now we are going to work on the layout of the app. First, right click on the layout folder and add the toolbar layout with "New>Layout resource file". Name it toolbar and click "Ok". In it, define a Toolbar inside an AppBarLayout inside a FrameLayout. The finished code should look like this: 
 
 ~~~
 <?xml version="1.0" encoding="utf-8"?>
@@ -75,7 +75,7 @@ dependencies {
 </FrameLayout>
 ~~~
 
-7.5) Go to `app>src>main>res>layout>activity_main.xml`. First thing to do is remove the default padding from the relative layout and include the toolbar. The file should now look like: 
+9) Go to `app>src>main>res>layout>activity_main.xml`. First thing to do is remove the default padding from the relative layout and include the toolbar. The file should now look like: 
 ~~~~
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -92,8 +92,9 @@ dependencies {
 
 <img src="screenshots/empty_layout.png" alt="Empty app" width="300"/>
 
-8) Next we will add a plus vector asset for the floating action button (FAB). To do this, right click on the “res” folder and choose `New>Vector Asset`. Under “Icon”, click the Android icon and in the next window, scroll up and select the “+” icon. Once that is done, check “Enable auto mirroring for RTL layout” and click “Next” and then “Finish”.
-9) Back in the `activity_main.xml`, you will add the ListView to store the items and the floating action button (FAB) to add items to the ListView. Add a ListView below the Toolbar and a FAB in the bottom right corner, offset by the default horizontal and vertical margins. The onClick action for the FAB should be “addItem”, the method that it will execute when clicked. Your code should look like this:
+10) Next we will add a plus vector asset for the floating action button (FAB). To do this, right click on the “res” folder and choose `New>Vector Asset`. Under “Icon”, click the Android icon and in the next window, scroll up and select the “+” icon. Once that is done, check “Enable auto mirroring for RTL layout” and click “Next” and then “Finish”.
+
+11) Back in the `activity_main.xml`, you will add the ListView to store the items and the floating action button (FAB) to add items to the ListView. Add a ListView below the Toolbar and a FAB in the bottom right corner, offset by the default horizontal and vertical margins. The onClick action for the FAB should be “addItem”, the method that it will execute when clicked. Your code should look like this:
 ~~~~
 <ListView
         android:id="@+id/list"
@@ -121,7 +122,7 @@ dependencies {
 
 <img src="screenshots/base_layout.png" alt="Base app layout" width="300"/>
 
-10) Next step is to create a list row layout. It will be a simple LinearLayout with a single TextView. Your code should look like this:
+12) Next step is to create a list row layout. It will be a simple LinearLayout with a single TextView. Your code should look like this:
 ~~~~
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -138,14 +139,14 @@ dependencies {
 </LinearLayout>
 ~~~~
 
-11) Now it is time to add functionality to the app. Go to `app>src>main>java>yourappdomain>MainActivity.java`. First create a List of list items, ListView, and ArrayAdapter at the class level. 
+13) Now it is time to add functionality to the app. Go to `app>src>main>java>yourappdomain>MainActivity.java`. First create a List of list items, ListView, and ArrayAdapter at the class level. 
 ~~~~
 private List<String> listItems;
 private ListView list;
 private ArrayAdapter<String> adapter;
 ~~~~
 
-12) Next, under onCreate, you will set the action bar, instantiate the List, and set the adapter like this:
+14) Next, under onCreate, you will set the action bar, instantiate the List, and set the adapter like this:
 ~~~~
 setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
@@ -160,7 +161,7 @@ R.layout.list_row, R.id.listText, listItems);
 list.setAdapter(adapter);
 ~~~~
 
-13) Next you will make the addItem method to add items to the List when you click the FAB. The method must take a View (the calling View) as its parameter. Inside the method, simply add an item to the List of items and notify the adapter that its data set has changed. 
+15) Next you will make the addItem method to add items to the List when you click the FAB. The method must take a View (the calling View) as its parameter. Inside the method, simply add an item to the List of items and notify the adapter that its data set has changed. 
 ~~~~
 public void addItem(View v) {
         listItems.add("Example");
@@ -168,8 +169,8 @@ public void addItem(View v) {
     }
 ~~~~
 
-14) At this point, you should have a working app that adds items to the list when you press the button. However, that is not very useful. Lets add input for note taking. 
-15) Now, replace the contents of the addItem method with an AlertDialog that asks for input and adds it to the list. The method should now look like this: 
+16) At this point, you should have a working app that adds items to the list when you press the button. However, that is not very useful. Lets add input for note taking. 
+17) Now, replace the contents of the addItem method with an AlertDialog that asks for input and adds it to the list. The method should now look like this: 
 ~~~~
 public void addItem(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
