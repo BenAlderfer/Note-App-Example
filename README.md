@@ -6,7 +6,7 @@ See below for a self-guided tutorial:
 1) Before starting, you will need to download [Android Studio](https://developer.android.com/studio/index.html) and the Android SDK (during the Android Studio installation).
 2) Create a new app. Name it whatever you want and set your domain to your website or make something up. Press “Next”. Set the minimum SDK level to 11 and press “Next”. Select “Empty Activity” and press “Next” and then press “Finish”.
 3) You are now ready to start making the app.
-4) First, we will need to make sure the dependencies are there for what we want to do. The main ones we will be concerned with are appcompat and design. These are included in the app's build.gradle. If you are on the latest tools, these should be the compile statements:
+4) First, we will need to make sure the dependencies are there for what we want to do. The main ones we will be concerned with are appcompat and design. These are included in the app's build.gradle. After editing the file, you should run the gradle sync. If you are on the latest tools, these should be the compile statements:
 
 ~~~
 dependencies {
