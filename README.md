@@ -18,6 +18,7 @@ dependencies {
 ~~~
 
 4.5) Next, we are going to define colors. Go to `app>src>main>res>values>colors.xml`. If the file does not exist, create it. 
+
 5) In that file, set the colorPrimary, colorPrimaryDark, and colorAccent. The file should look like this:
 ~~~~
 <?xml version="1.0" encoding="utf-8"?>
