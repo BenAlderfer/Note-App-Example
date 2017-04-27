@@ -170,6 +170,7 @@ public void addItem(View v) {
 ~~~~
 
 16) At this point, you should have a working app that adds items to the list when you press the button. However, that is not very useful. Lets add input for note taking. 
+
 17) Now, replace the contents of the addItem method with an AlertDialog that asks for input and adds it to the list. The method should now look like this: 
 ~~~~
 public void addItem(View v) {
@@ -206,6 +207,7 @@ Congratulations, you now have a working note taking app. This app can take whate
 <img src="screenshots/final_app.png" alt="Final look" width="300"/>
 
 If you want to save your notes and restore them next time you use the app, continue the tutorial:
+
 18) To save the list, we will use SharedPreferences to save it to the app's cache. First, add the Gson dependency that we will need later: 
 
 ~~~
